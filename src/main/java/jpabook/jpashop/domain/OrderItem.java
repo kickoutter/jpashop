@@ -25,4 +25,28 @@ public class OrderItem {
 
     private int orderPrice; //주문가격
     private int count; //주문수량
+
+    //==생성 메서드==//
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        item.removeStock(count); // ??왜 생성메서드는 item으로 바로 접근하고
+        return orderItem;
+    }
+
+    //==비지니스 로직==//
+    /** 주문 취소 */
+    public void cancel() {
+        getItem().addStock(count); // ??왜 비지니스로직에서는 getItem()으로 접근 하는지
+    }
+
+    //==조회 로직==//
+    /** 주문상품 전체 가격 조회 */
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
+
 }
