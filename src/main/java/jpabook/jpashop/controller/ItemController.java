@@ -59,6 +59,7 @@ public class ItemController {
 
         Book item = (Book) itemService.findOne(itemId);
 
+        // BookForm이란 새로운 것을 만들어서 거기에 넣고 나중에 이걸로 Item의 자식인 Book에 잘 넣어줌??
         BookForm form = new BookForm();
         form.setId(item.getId());
         form.setName(item.getName());
@@ -91,7 +92,7 @@ public class ItemController {
 //    }
 
     /**
-     * 상품 수정, 권장 코드
+     * 상품 수정, 권장 코드, dirty checking??
      */
     @PostMapping(value = "/items/{itemId}/edit")
     public String updateItem(@ModelAttribute("form") BookForm form) {
